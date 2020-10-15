@@ -349,12 +349,12 @@ func ParseLV(line string) (*LV, error) {
 		return nil, err
 	}
 
-	kernelMajNumber, err := strconv.ParseUint(fields["LVM2_LV_KERNEL_MAJOR"], 10, 32)
+	kernelMajNumber, err := strconv.ParseInt(fields["LVM2_LV_KERNEL_MAJOR"], 10, 32)
 	if err != nil {
 		return nil, err
 	}
 
-	kernelMinNumber, err := strconv.ParseUint(fields["LVM2_LV_KERNEL_MINOR"], 10, 32)
+	kernelMinNumber, err := strconv.ParseInt(fields["LVM2_LV_KERNEL_MINOR"], 10, 32)
 	if err != nil {
 		return nil, err
 	}
