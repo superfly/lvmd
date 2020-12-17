@@ -268,6 +268,7 @@ type LV struct {
 	UUID               string
 	Attributes         LVAttributes
 	CopyPercent        string
+	DataPercent        float64
 	ActualDevMajNumber uint32
 	ActualDevMinNumber uint32
 	Tags               []string
@@ -364,12 +365,21 @@ func ParseLV(line string) (*LV, error) {
 		return nil, err
 	}
 
+	dataPercent := 0.0
+	if fields["LVM2_DATA_PERCENT"] != "" {
+		dataPercent, err = strconv.ParseFloat(fields["LVM2_DATA_PERCENT"], 64)
+		if err != nil {
+			return nil, err
+		}
+	}
+
 	return &LV{
 		Name:               fields["LVM2_LV_NAME"],
 		Size:               size,
 		UUID:               fields["LVM2_LV_UUID"],
 		Attributes:         *attrs,
 		CopyPercent:        fields["LVM2_COPY_PERCENT"],
+		DataPercent:        dataPercent,
 		ActualDevMajNumber: uint32(kernelMajNumber),
 		ActualDevMinNumber: uint32(kernelMinNumber),
 		Tags:               strings.Split(fields["LVM2_LV_TAGS"], ","),
