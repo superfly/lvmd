@@ -39,7 +39,7 @@ func ListLV(ctx context.Context, listspec string) ([]*parser.LV, error) {
 	defer sp.Finish()
 
 	cmd := exec.Command("lvs", "--units=b", "--separator=<:SEP:>", "--nosuffix", "--noheadings",
-		"-o", "lv_name,lv_size,lv_uuid,lv_attr,copy_percent,lv_kernel_major,lv_kernel_minor,lv_tags,vg_name", "--nameprefixes", "-a", listspec)
+		"-o", "lv_name,lv_size,lv_uuid,lv_attr,copy_percent,data_percent,lv_kernel_major,lv_kernel_minor,lv_tags,vg_name", "--nameprefixes", "-a", listspec)
 	out, err := cmd.CombinedOutput()
 	if err != nil {
 		return nil, err
