@@ -340,7 +340,7 @@ func ParseLV(line string) (*LV, error) {
 	// lvs --units=b --separator="<:SEP:>" --nosuffix --noheadings -o lv_name,lv_size,lv_uuid,lv_attr,copy_percent,lv_kernel_major,lv_kernel_minor,lv_tags,vg_name --nameprefixes -a
 	// todo: devices, lv_ancestors, lv_descendants, lv_major, lv_minor, mirror_log, modules, move_pv, origin, region_size
 	//       seg_count, seg_size, seg_start, seg_tags, segtype, snap_percent, stripes, stripe_size
-	fields, err := parse(line, 9)
+	fields, err := parse(line, 10)
 	if err != nil {
 		return nil, err
 	}
