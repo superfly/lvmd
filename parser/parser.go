@@ -311,7 +311,7 @@ func (vg VG) ToProto() *pb.VolumeGroup {
 func parse(line string, numComponents int) (map[string]string, error) {
 	components := strings.Split(line, separator)
 	if len(components) != numComponents {
-		return nil, fmt.Errorf("expected %d components, got %d", numComponents, len(components))
+		return nil, fmt.Errorf("expected %d components, got %d => %s", numComponents, len(components), line)
 	}
 
 	fields := map[string]string{}
